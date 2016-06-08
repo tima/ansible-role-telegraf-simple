@@ -1,22 +1,23 @@
 ---
 # tasks file for telegraf
-- name: Add InfluxDB repository file [RHEL/CentOS]
-  template:
-    src: influxdb.repo.j2
-    dest: /etc/yum.repos.d/influxdb.repo
-    force: yes
-    backup: yes
+- name: add influxdata repository
+  yum_repository:
+    name: influxdata
+    description: "InfluxData Repository - {{ ansible_distribution }} $releasever"
+    baseurl: "https://repos.influxdata.com/{{ ansible_distribution | lower }}/$releasever/$basearch/stable"
+    gpgcheck:  yes
+    gpgkey: "https://repos.influxdata.com/influxdb.key"
 
 - name: install telegraf
   yum:
-    name: telegraf-{{ telegraf_version }}
+    name: telegraf
     state: present
   notify: restart telegraf
 
 - name: configure telegraf
   template:
     src: telegraf.conf.j2
-    dest: /etc/opt/telegraf/telegraf.conf
+    dest: /etc/telegraf/telegraf.conf
   notify: restart telegraf
 
 - name: start telegraf
