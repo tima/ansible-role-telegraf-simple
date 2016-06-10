@@ -1,3 +1,4 @@
 ---
 # defaults file for telegraf
+telegraf_influxdb_url: http://localhost:8086
 telegraf_influxdb_db_name: telegraf
