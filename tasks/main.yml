@@ -1,5 +1,5 @@
 ---
-# tasks file for telegraf
+# tasks file for telegraf-simple
 - name: add influxdata repository
   yum_repository:
     name: influxdata

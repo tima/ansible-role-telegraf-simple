@@ -1,5 +1,5 @@
 ---
-# handlers file for telegraf
+# handlers file for telegrafi-simple
 - name: restart telegraf
   service: 
     name: telegraf
